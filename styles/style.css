@@ -23,7 +23,7 @@ html {
 body {
   width: 600px;
   margin: 0 auto;
-  background-color: #FF9500;
+  background-color: #8e9d8b;
   padding: 0 20px 20px 20px;
   border: 5px solid black;
 }
@@ -31,11 +31,18 @@ body {
 h1 {
   margin: 0;
   padding: 20px 0;
-  color: #00539F;
-  text-shadow: 3px 3px 1px black;
+  font-size: 25px;
+  color: #000000;
+  text-shadow: 1px 1px 0.2px black;
 }
 
 img {
   display: block;
   margin: 0 auto;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 10px;
 }

@@ -1,14 +1,31 @@
 const myImage=document.querySelector('img')
 
 
+const initial_image='images/Generic Profile Picture.JPG';
+
+// Set the initial image source
+function setInitialImage() {
+    myImage.setAttribute('src', initial_image);
+    myImage.setAttribute('alt', 'Generic Profile Picture');
+    myImage.setAttribute('title', 'Generic Profile Picture');
+    myImage.style.border = '2px solid black';
+    myImage.style.borderRadius = '10px';
+}
+
+function setDarthy(){
+    myImage.setAttribute('src','images/Darthy.png');
+    myImage.setAttribute('alt','Darthy');
+    myImage.setAttribute('title','Darthy');
+    myImage.style.border='none';
+}
+
 myImage.addEventListener('click',
     ()=>{
         const mySrc=myImage.getAttribute('src');
-        console.log(mySrc)
-        if(mySrc === 'images/firefox-icon.png'){
-            myImage.setAttribute('src','images/My Image.png');
+        if(mySrc === initial_image){
+            setDarthy();
         } else{
-            myImage.setAttribute('src','images/firefox-icon.png');
+            setInitialImage();
         }
     }
 );
@@ -16,14 +33,18 @@ myImage.addEventListener('click',
 
 let myButton=document.querySelector('button');
 let myHeading=document.querySelector('h1');
+let nameNotEnteredText='The user does not want to enter a name';
 
 function setUserName(){
     let myName=prompt("Please Enter your name");
     if (!myName){
-        myName='The user does not want to enter a name'
+        myName=nameNotEnteredText
+        myHeading.textContent = myName;
+    }
+    else{
+        myHeading.textContent = `My new user: ${myName}`;
     }
     localStorage.setItem('name',myName);
-    myHeading.textContent = `My new user: ${myName}`;
 }
 
 //Initialize with the name if it is not stored in the browser yet, else show the old name which is already present
@@ -31,12 +52,18 @@ if(!localStorage.getItem('name')){
     setUserName();
 } else {
     const storedName=localStorage.getItem('name');
-    myHeading.textContent = `My old user: ${storedName}`;
+    if(storedName==nameNotEnteredText){
+        myHeading.textContent = storedName;
+    }
+    else{
+        myHeading.textContent = `My old user: ${storedName}`;
+    }
 }
 
 
 myButton.addEventListener('click',
     ()=>{
+        localStorage.removeItem('name');
         setUserName();
     }
 )
